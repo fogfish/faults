@@ -2,11 +2,11 @@
 
 The library `errors` provides type safe constructs to annotate Golang errors with the context and handle [opaque errors](https://tech.fog.fish/2022/07/05/assert-golang-errors-for-behavior.html#opaque-errors) without the boilerplate.
 
-[![Version](https://img.shields.io/github/v/tag/fogfish/errors?label=version)](https://github.com/fogfish/errors/releases)
-[![Documentation](https://pkg.go.dev/badge/github.com/fogfish/errors)](https://pkg.go.dev/github.com/fogfish/errors)
-[![Build Status](https://github.com/fogfish/errors/workflows/build/badge.svg)](https://github.com/fogfish/errors/actions/)
-[![Git Hub](https://img.shields.io/github/last-commit/fogfish/errors.svg)](https://github.com/fogfish/errors)
-[![Coverage Status](https://coveralls.io/repos/github/fogfish/errors/badge.svg?branch=main)](https://coveralls.io/github/fogfish/errors?branch=main)
+[![Version](https://img.shields.io/github/v/tag/fogfish/faults?label=version)](https://github.com/fogfish/faults/releases)
+[![Documentation](https://pkg.go.dev/badge/github.com/fogfish/faults)](https://pkg.go.dev/github.com/fogfish/faults)
+[![Build Status](https://github.com/fogfish/faults/workflows/test/badge.svg)](https://github.com/fogfish/faults/actions/)
+[![Git Hub](https://img.shields.io/github/last-commit/fogfish/faults.svg)](https://github.com/fogfish/faults)
+[![Coverage Status](https://coveralls.io/repos/github/fogfish/faults/badge.svg?branch=main)](https://coveralls.io/github/fogfish/faults?branch=main)
 
 ## Inspiration
 
@@ -43,7 +43,7 @@ Usage of this library to define a type safe wrapping of errors is the better app
 ```go
 // produces an error message
 // [foo] dynamodb i/o failed: original error
-const errDynamoIO = errors.Type("dynamodb i/o failed")
+const errDynamoIO = faults.Type("dynamodb i/o failed")
 
 func foo() (*Bar, error) {
   val, err := db.dynamo.GetItem(ctx, req)
@@ -59,24 +59,24 @@ func foo() (*Bar, error) {
 The latest version of the library is available at `main` branch of this repository. All development, including new features and bug fixes, take place on the `main` branch using forking and pull requests as described in contribution guidelines. The stable version is available via Golang modules.
 
 ```go
-import "github.com/fogfish/errors"
+import "github.com/fogfish/faults"
 
 const (
   // create basic error context
-  errSomeA = errors.Type("something is failed")
+  errSomeA = faults.Type("something is failed")
   // create error context with arguments
-	errSomeB = errors.Type("something is failed %s")
+  errSomeB = faults.Type("something is failed %s")
   // create "fast" error context, would not annotate error with call stack
-  errSomeC = errors.Fast("something is failed")
+  errSomeC = faults.Fast("something is failed")
   // create error context with type safe arguments
-	errSomeD = errors.Safe1[int]("something %d is failed")
-  errSomeE = errors.Safe2[int, string]("something %d is failed %s")
+  errSomeD = faults.Safe1[int]("something %d is failed")
+  errSomeE = faults.Safe2[int, string]("something %d is failed %s")
 )
 ```
 
 ### Gotchas 
 
-The library uses the `runtime` package to discover function context and inject it into the error. If you are developing a highly loaded system, usage of `runtime` package might cause about 75% of the loss of the error path capacity. Therefore, the library support a "fast" variant of the type `errors.Fast`, which omits usage of `runtime` package internally.
+The library uses the `runtime` package to discover function context and inject it into the error. If you are developing a highly loaded system, usage of `runtime` package might cause about 75% of the loss of the error path capacity. Therefore, the library support a "fast" variant of the type `faults.Fast`, which omits usage of `runtime` package internally.
 
 ## How To Contribute
 
@@ -93,7 +93,7 @@ The build and testing process requires [Go](https://golang.org) version 1.18 or 
 **build** and **test** library.
 
 ```bash
-git clone https://github.com/fogfish/errors
+git clone https://github.com/fogfish/faults
 cd errors
 go test
 go test -run=^$ -bench=. -cpu 1 -benchtime=1s
@@ -110,4 +110,4 @@ If you experience any issues with the library, please let us know via [GitHub is
 
 ## License
 
-[![See LICENSE](https://img.shields.io/github/license/fogfish/errors.svg?style=for-the-badge)](LICENSE)
+[![See LICENSE](https://img.shields.io/github/license/fogfish/faults.svg?style=for-the-badge)](LICENSE)

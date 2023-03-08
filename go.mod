@@ -1,3 +1,3 @@
-module github.com/fogfish/errors
+module github.com/fogfish/faults
 
-go 1.19
+go 1.20

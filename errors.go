@@ -14,7 +14,7 @@
 // consequent debugging of opaque error handling becomes an easy job.
 // Instead of using `fmt.Errorf` to include the execution context to the error,
 // it defines a type safe wrapping of errors.
-package errors
+package faults
 
 import (
 	"fmt"

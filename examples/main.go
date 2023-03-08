@@ -12,13 +12,13 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/fogfish/errors"
+	"github.com/fogfish/faults"
 )
 
 const (
-	errDoSomething     = errors.Type("unable to do something")
-	errDoSomethingElse = errors.Type("unable to do something else (e.g. %s)")
-	errDoAttempt       = errors.Safe1[int]("attempt %d is failed")
+	errDoSomething     = faults.Type("unable to do something")
+	errDoSomethingElse = faults.Type("unable to do something else (e.g. %s)")
+	errDoAttempt       = faults.Safe1[int]("attempt %d is failed")
 )
 
 func doSomething() error {
