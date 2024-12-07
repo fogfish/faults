@@ -24,7 +24,7 @@ const (
 func doSomething() error {
 	_, err := os.Open("some-file-which-do-exist")
 	if err != nil {
-		return errDoSomething.New(err)
+		return errDoSomething.With(err)
 	}
 
 	return nil
@@ -32,7 +32,7 @@ func doSomething() error {
 
 func doSomethingElse() error {
 	if err := doSomething(); err != nil {
-		return errDoSomethingElse.New(err, "nested call")
+		return errDoSomethingElse.With(err, "nested call")
 	}
 
 	return nil
@@ -40,7 +40,7 @@ func doSomethingElse() error {
 
 func doAttempt(n int) error {
 	if err := doSomethingElse(); err != nil {
-		return errDoAttempt.New(err, n)
+		return errDoAttempt.With(err, n)
 	}
 
 	return nil
