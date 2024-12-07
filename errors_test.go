@@ -18,60 +18,60 @@ import (
 func TestType(t *testing.T) {
 	const errA = errors.Type("a")
 
-	if errA.New(err).Error() != "[github.com/fogfish/faults_test.TestType 21] a: just error" {
-		t.Errorf("failed: %s", errA.New(err))
+	if errA.With(err).Error() != "[github.com/fogfish/faults_test.TestType 21] a: just error" {
+		t.Errorf("failed: %s", errA.With(err))
 	}
 
 	const errB = errors.Type("b %s")
 
-	if errB.New(err, "b").Error() != "[github.com/fogfish/faults_test.TestType 27] b b: just error" {
-		t.Errorf("failed: %s", errB.New(err, "b"))
+	if errB.With(err, "b").Error() != "[github.com/fogfish/faults_test.TestType 27] b b: just error" {
+		t.Errorf("failed: %s", errB.With(err, "b"))
 	}
 }
 
 func TestFast(t *testing.T) {
 	const errA = errors.Fast("a")
 
-	if errA.New(err).Error() != "a: just error" {
-		t.Errorf("failed: %s", errA.New(err))
+	if errA.With(err).Error() != "a: just error" {
+		t.Errorf("failed: %s", errA.With(err))
 	}
 
 	const errB = errors.Fast("b %s")
 
-	if errB.New(err, "b").Error() != "b b: just error" {
-		t.Errorf("failed: %s", errB.New(err, "b"))
+	if errB.With(err, "b").Error() != "b b: just error" {
+		t.Errorf("failed: %s", errB.With(err, "b"))
 	}
 }
 
 func TestSafe(t *testing.T) {
 	const errA = errors.Safe1[string]("a %s")
 
-	if errA.New(err, "a").Error() != "[github.com/fogfish/faults_test.TestSafe 49] a a: just error" {
-		t.Errorf("failed: %s", errA.New(err, "a"))
+	if errA.With(err, "a").Error() != "[github.com/fogfish/faults_test.TestSafe 49] a a: just error" {
+		t.Errorf("failed: %s", errA.With(err, "a"))
 	}
 
 	const errB = errors.Safe2[string, string]("a %s %s")
 
-	if errB.New(err, "a", "b").Error() != "[github.com/fogfish/faults_test.TestSafe 55] a a b: just error" {
-		t.Errorf("failed: %s", errB.New(err, "a", "b"))
+	if errB.With(err, "a", "b").Error() != "[github.com/fogfish/faults_test.TestSafe 55] a a b: just error" {
+		t.Errorf("failed: %s", errB.With(err, "a", "b"))
 	}
 
 	const errC = errors.Safe3[string, string, string]("a %s %s %s")
 
-	if errC.New(err, "a", "b", "c").Error() != "[github.com/fogfish/faults_test.TestSafe 61] a a b c: just error" {
-		t.Errorf("failed: %s", errC.New(err, "a", "b", "c"))
+	if errC.With(err, "a", "b", "c").Error() != "[github.com/fogfish/faults_test.TestSafe 61] a a b c: just error" {
+		t.Errorf("failed: %s", errC.With(err, "a", "b", "c"))
 	}
 
 	const errD = errors.Safe4[string, string, string, string]("a %s %s %s %s")
 
-	if errD.New(err, "a", "b", "c", "d").Error() != "[github.com/fogfish/faults_test.TestSafe 67] a a b c d: just error" {
-		t.Errorf("failed: %s", errD.New(err, "a", "b", "c", "d"))
+	if errD.With(err, "a", "b", "c", "d").Error() != "[github.com/fogfish/faults_test.TestSafe 67] a a b c d: just error" {
+		t.Errorf("failed: %s", errD.With(err, "a", "b", "c", "d"))
 	}
 
 	const errE = errors.Safe5[string, string, string, string, string]("a %s %s %s %s %s")
 
-	if errE.New(err, "a", "b", "c", "d", "e").Error() != "[github.com/fogfish/faults_test.TestSafe 73] a a b c d e: just error" {
-		t.Errorf("failed: %s", errE.New(err, "a", "b", "c", "d", "e"))
+	if errE.With(err, "a", "b", "c", "d", "e").Error() != "[github.com/fogfish/faults_test.TestSafe 73] a a b c d e: just error" {
+		t.Errorf("failed: %s", errE.With(err, "a", "b", "c", "d", "e"))
 	}
 }
 
@@ -92,9 +92,9 @@ const (
 )
 
 func failStdr() error { return fmt.Errorf("error type: %w", err) }
-func failFast() error { return errFast.New(err) }
-func failType() error { return errType.New(err) }
-func failSafe() error { return errSafe.New(err, "safe") }
+func failFast() error { return errFast.With(err) }
+func failType() error { return errType.With(err) }
+func failSafe() error { return errSafe.With(err, "safe") }
 
 func BenchmarkStd(b *testing.B) {
 	var err error
