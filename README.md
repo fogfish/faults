@@ -1,6 +1,6 @@
-# errors
+# faults
 
-The library `errors` provides type safe constructs to annotate Golang errors with the context and handle [opaque errors](https://tech.fog.fish/2022/07/05/assert-golang-errors-for-behavior.html#opaque-errors) without the boilerplate.
+The library `faults` provides type safe constructs to annotate Golang errors with the context and handle [opaque errors](https://github.com/fogfish/fogfish.github.io/blob/master/posts/2022/2022-07-05-assert-golang-errors-for-behavior.md#opaque-errors) without the boilerplate.
 
 [![Version](https://img.shields.io/github/v/tag/fogfish/faults?label=version)](https://github.com/fogfish/faults/releases)
 [![Documentation](https://pkg.go.dev/badge/github.com/fogfish/faults)](https://pkg.go.dev/github.com/fogfish/faults)
