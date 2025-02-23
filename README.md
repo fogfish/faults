@@ -8,7 +8,6 @@ The library `errors` provides type safe constructs to annotate Golang errors wit
 [![Git Hub](https://img.shields.io/github/last-commit/fogfish/faults.svg)](https://github.com/fogfish/faults)
 [![Coverage Status](https://coveralls.io/repos/github/fogfish/faults/badge.svg?branch=main)](https://coveralls.io/github/fogfish/faults?branch=main)
 
-
 ## Inspiration
 
 The library is inspired by the post -- [Assert Golang Errors For Behavior: Everything You Need To Know Before Making Robust and Scalable Error Handling](https://github.com/fogfish/fogfish.github.io/blob/master/posts/2022/2022-07-05-assert-golang-errors-for-behavior.md) and its recommendation to deal with opaque errors -- failure does not have global catastrophic impacts but local functionality is impaired, execution of current control flow is terminated and incorrect results are returned.
@@ -56,11 +55,6 @@ func foo() (*Bar, error) {
 ```
 
 
-// Type Safe + errors.Is
-
-
-
-
 ## Getting started
 
 The latest version of the library is available at `main` branch of this repository. All development, including new features and bug fixes, take place on the `main` branch using forking and pull requests as described in contribution guidelines. The stable version is available via Golang modules.
@@ -68,7 +62,7 @@ The latest version of the library is available at `main` branch of this reposito
 
 ### Error Type 
 
-The `faults.Type` in the faults library provides a type-safe way to declare and manage error contexts in Go. This type allows you to define custom error types with specific messages, which can include placeholders for dynamic content. Here's how you can use faults.Type to create various types of errors.
+The `faults.Type` in the `faults` library provides a type-safe way to declare and manage error contexts in Go. This type allows you to define custom error types with specific messages, which can include placeholders for dynamic content. Here's how you can use `faults.Type` to create various types of errors.
 
 ```go
 import "github.com/fogfish/faults"

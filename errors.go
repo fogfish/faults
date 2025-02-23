@@ -72,11 +72,6 @@ type Fast string
 //		return nil, errSome.With(err)
 //	}
 func (e Fast) With(err error, args ...any) error {
-	// var msg string
-	// if len(args) > 0 {
-	// 	msg = fmt.Sprintf(string(e), args...)
-	// }
-
 	return errType{args: args, hd: e, tl: err}
 }
 
