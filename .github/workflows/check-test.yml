@@ -8,11 +8,6 @@ on:
       - opened
       - synchronize
 
-  push:
-    branches:
-      - main
-      - /refs/heads/main
-
 jobs:
 
   unit:
